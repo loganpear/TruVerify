@@ -1,0 +1,7 @@
+{
+  "name": "TruVerify AI",
+  "description": "A B2B identity verification platform using Gemini to match government IDs against selfies and validate user data.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
