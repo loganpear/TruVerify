@@ -11,7 +11,7 @@ export const Landing: React.FC<LandingProps> = ({ onNavigate }) => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="border-b bg-white sticky top-0 z-10">
+      <nav className="border-b bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="bg-brand-600 p-1.5 rounded-lg">

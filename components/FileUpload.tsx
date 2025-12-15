@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Upload, Camera, CheckCircle, AlertCircle, X } from 'lucide-react';
 
 interface FileUploadProps {
@@ -19,12 +19,26 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
+  // Sync preview with value prop changes (e.g. when auto-filling demo data)
+  useEffect(() => {
+    if (value) {
+      const url = URL.createObjectURL(value);
+      setPreviewUrl(url);
+      
+      // Cleanup URL object when component unmounts or value changes
+      return () => {
+        URL.revokeObjectURL(url);
+      };
+    } else {
+      setPreviewUrl(null);
+    }
+  }, [value]);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       onChange(file);
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
+      // The useEffect will handle setting the previewUrl
     }
   };
 
