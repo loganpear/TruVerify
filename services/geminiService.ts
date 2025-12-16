@@ -21,12 +21,8 @@ export const verifyIdentity = async (
   idFile: File,
   selfieFile: File
 ): Promise<VerificationResult> => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    throw new Error("API_KEY environment variable is missing.");
-  }
-
-  const ai = new GoogleGenAI({ apiKey });
+  // Initialization: Directly use process.env.API_KEY as per guidelines.
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const idBase64 = await processFileToBase64(idFile);
   const selfieBase64 = await processFileToBase64(selfieFile);
